@@ -17,19 +17,15 @@ helpers.clear_imported_external_styles = function(domain, interval, timesToWait)
     //Create an interval to recheck to see if the style sheet dynamically appears
     var waitToAppear = setInterval(function () {
         var selector = $('link[rel=stylesheet][href^="'+ domain +'"]');
-        console.log(timesToWait);
         times++;
         if(selector.length){
             $('link[rel=stylesheet][href^="'+ domain +'"]').remove();
             clearTimeout(waitToAppear);
         }
         else{
-            console.log("Not Removed");
-
             //After so many iterations clear the timeout
             if(timer >= timesToWait){
                 clearTimeout(waitToAppear);
-                console.log("Max");
             }
         }
         
